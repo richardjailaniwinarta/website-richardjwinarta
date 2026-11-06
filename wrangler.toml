@@ -10,7 +10,7 @@ directory = "./public"
 # Ganti id dengan ID KV dari dashboard Cloudflare. Lihat README.
 [[kv_namespaces]]
 binding = "DATA"
-id = "GANTI_DENGAN_ID_KV"
+id = "37b2c3f650db426899bbe1639591a6b3"
 
 # Membatasi percobaan login: 5 kali per menit untuk tiap alamat IP.
 [[ratelimits]]
