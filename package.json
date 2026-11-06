@@ -1,0 +1,18 @@
+{
+  "name": "directory-richardva",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Halaman link pribadi Richard J. Winarta dengan panel admin.",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "wrangler dev --port 8787",
+    "deploy": "wrangler deploy",
+    "test": "node --test"
+  },
+  "devDependencies": {
+    "wrangler": "^4.158.0"
+  }
+}
