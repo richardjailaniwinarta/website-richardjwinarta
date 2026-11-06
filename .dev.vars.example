@@ -1,0 +1,4 @@
+# Hanya untuk mencoba di komputer sendiri. Salin file ini menjadi .dev.vars, lalu isi.
+# Di Cloudflare, nilai ini diisi sebagai Secret di pengaturan Worker.
+ADMIN_EMAIL="nama@email.com"
+ADMIN_PASSWORD="ganti-dengan-kata-sandi-panjang"
