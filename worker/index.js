@@ -110,7 +110,7 @@ async function route(request, env) {
   const method = request.method === 'HEAD' ? 'GET' : request.method;
 
   if (method === 'GET') {
-    if (pathname === '/links') return html(publicHtml(await getPublished(env), url.origin));
+    if (pathname === '/links' && env.LINKS_PAGE === 'on') return html(publicHtml(await getPublished(env), url.origin));
     if (pathname === '/admin/login') {
       if (await isSignedIn(request, env)) return redirect('/admin');
       return html(loginHtml(await getPublished(env), isConfigured(env)));

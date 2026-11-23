@@ -7,7 +7,7 @@ Website pribadi Richard J. Winarta: halaman utama, halaman produk digital, halam
 | `/` | Halaman utama (hero, layanan, tentang, paket, kontak) | `public/index.html` |
 | `/produk` | Daftar produk digital dengan filter | `public/produk.html` |
 | `/portfolio/` | Portfolio (beranda, `landing-pages`, `lead-generation`, `email-marketing`) | `public/portfolio/` (salinan dari repo `Portfolio-Richard`) |
-| `/links` | Halaman link (tema Kartu Logam, Sinema Malam, Kaca Bara, atau Galeri Putih) | dibuat Worker dari data KV |
+| `/links` | Halaman link (tema Kartu Logam, Sinema Malam, Kaca Bara, atau Galeri Putih). **Sedang dinonaktifkan** (404). Kode dan data KV tetap ada. Untuk mengaktifkan lagi, tambahkan variabel `LINKS_PAGE` = `on` di Worker (Settings → Variables), lalu Deploy. | dibuat Worker dari data KV |
 | `/admin` | Admin halaman link: atur profil, foto, link, tema, warna, dan efek dengan pratinjau langsung. Perubahan tersimpan sebagai draft dan baru tampil setelah menekan **Terbitkan**. | `worker/` dan `public/admin-assets/` |
 | `/studio-kartun-3d/` | Landing page produk Studio Kartun 3D | `public/studio-kartun-3d/` |
 

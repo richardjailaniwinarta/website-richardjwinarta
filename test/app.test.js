@@ -27,7 +27,7 @@ function fakeKv() {
 
 let env;
 beforeEach(() => {
-  env = { DATA: fakeKv(), ADMIN_EMAIL: EMAIL, ADMIN_PASSWORD: PASSWORD };
+  env = { DATA: fakeKv(), ADMIN_EMAIL: EMAIL, ADMIN_PASSWORD: PASSWORD, LINKS_PAGE: 'on' };
 });
 
 const call = (path, init) => worker.fetch(new Request(BASE + path, init), env);
@@ -202,4 +202,11 @@ test('upload hanya menerima gambar asli dan bisa dibuka kembali', async () => {
   assert.equal((await call('/uploads/draft')).status, 404);
 
   assert.equal((await send(new Uint8Array(9 * 1024 * 1024))).status, 413);
+});
+
+test('halaman /links tertutup kecuali LINKS_PAGE diaktifkan', async () => {
+  delete env.LINKS_PAGE;
+  assert.equal((await call('/links')).status, 404);
+  env.LINKS_PAGE = 'on';
+  assert.equal((await call('/links')).status, 200);
 });

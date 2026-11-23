@@ -6,6 +6,9 @@ compatibility_date = "2026-10-01"
 [assets]
 directory = "./public"
 
+# Halaman /links nonaktif secara default. Untuk mengaktifkan lagi, tambahkan variabel LINKS_PAGE = "on"
+# (dashboard Cloudflare: Settings > Variables, atau blok [vars] di sini).
+
 # Penyimpanan isi halaman dan foto upload.
 # Ganti id dengan ID KV dari dashboard Cloudflare. Lihat README.
 [[kv_namespaces]]
