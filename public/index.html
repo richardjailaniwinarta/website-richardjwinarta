@@ -71,21 +71,27 @@
 
     <section class="section" id="layanan" aria-label="Layanan, portfolio, dan produk">
       <div class="tab-grid" role="group" aria-label="Pilih kategori">
-        <button class="tab" type="button" data-tab="jasa" aria-pressed="true">
-          <span class="tab-label">Jasa Executive Virtual Assistant</span>
-          <span class="tab-count">3 layanan</span>
-          <span class="tab-pill">Dipilih</span>
-        </button>
-        <button class="tab" type="button" data-tab="portfolio" aria-pressed="false">
-          <span class="tab-label">Portfolio</span>
-          <span class="tab-count">3 case study</span>
-          <span class="tab-pill">Lihat</span>
-        </button>
-        <button class="tab" type="button" data-tab="produk" aria-pressed="false">
-          <span class="tab-label">Produk Digital</span>
-          <span class="tab-count">3 produk</span>
-          <span class="tab-pill">Lihat</span>
-        </button>
+        <div class="tab is-on" data-tab="jasa">
+          <button class="tab-main" type="button" aria-pressed="true">
+            <span class="tab-label">Jasa Executive Virtual Assistant</span>
+            <span class="tab-count">3 layanan</span>
+          </button>
+          <span class="tab-pill" data-pill>Dipilih</span>
+        </div>
+        <div class="tab" data-tab="portfolio">
+          <button class="tab-main" type="button" aria-pressed="false">
+            <span class="tab-label">Portfolio</span>
+            <span class="tab-count">3 case study</span>
+          </button>
+          <a class="tab-pill" href="/portfolio/">Lihat</a>
+        </div>
+        <div class="tab" data-tab="produk">
+          <button class="tab-main" type="button" aria-pressed="false">
+            <span class="tab-label">Produk Digital</span>
+            <span class="tab-count">3 produk</span>
+          </button>
+          <a class="tab-pill" href="/produk">Lihat</a>
+        </div>
       </div>
 
       <div class="panel" aria-live="polite">

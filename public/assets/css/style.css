@@ -149,7 +149,7 @@ button { font-family: inherit; }
 .section { display: flex; flex-direction: column; gap: 20px; }
 .tab-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
 .tab {
-  text-align: left; cursor: pointer; border-radius: 28px; padding: 24px;
+  position: relative; text-align: left; border-radius: 28px; padding: 24px;
   display: flex; flex-direction: column; gap: 14px;
   background: var(--glass); color: var(--charcoal);
   border: 1px solid rgba(255, 255, 255, 0.9);
@@ -158,11 +158,26 @@ button { font-family: inherit; }
   transition: transform 0.2s ease;
 }
 .tab:hover { transform: translateY(-2px); }
+/* Seluruh area kartu menekan tombol .tab-main; tombol "Lihat" berada di atasnya */
+.tab-main {
+  display: flex; flex-direction: column; gap: 14px; margin: 0; padding: 0; border: 0;
+  background: none; color: inherit; font: inherit; text-align: left; cursor: pointer;
+}
+.tab-main::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }
+.tab-main:focus-visible { outline: none; }
+.tab-main:focus-visible::after { outline: 3px solid var(--sky); outline-offset: 3px; }
 .tab-label { font-size: 14px; font-weight: 600; opacity: 0.85; }
 .tab-count { font-size: 30px; font-weight: 800; letter-spacing: -0.02em; }
-.tab-pill { align-self: flex-start; font-size: 13px; font-weight: 700; padding: 8px 18px; border-radius: 999px; background: var(--charcoal); color: var(--cream); }
-.tab[aria-pressed="true"] { background: var(--maroon); color: var(--cream); }
-.tab[aria-pressed="true"] .tab-pill { background: var(--gold); color: var(--charcoal); }
+.tab-pill {
+  position: relative; z-index: 1; align-self: flex-start; text-decoration: none;
+  font-size: 13px; font-weight: 700; padding: 8px 18px; border-radius: 999px;
+  background: var(--charcoal); color: var(--cream);
+}
+a.tab-pill { cursor: pointer; transition: transform 0.2s ease, background-color 0.2s ease; }
+a.tab-pill:hover { transform: translateY(-2px); color: var(--cream); background: var(--maroon); }
+.tab.is-on { background: var(--maroon); color: var(--cream); }
+.tab.is-on .tab-pill { background: var(--gold); color: var(--charcoal); }
+.tab.is-on a.tab-pill:hover { color: var(--charcoal); background: #ffc95e; }
 
 .panel {
   position: relative; overflow: hidden; background: var(--charcoal); color: var(--cream);

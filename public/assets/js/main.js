@@ -38,7 +38,6 @@
       blurb: "Tiga layanan untuk menemukan calon pembeli, mengelolanya, dan mengubahnya jadi klien tetap.",
       cta: "Tanya layanan ini",
       href: "#kontak",
-      external: false,
       items: [
         { title: "Landing Pages", body: "Satu tugas: penawaran jelas, copy yang menjual, jalur mudah menuju ya", color: "#F66C2D", ink: "#363641", d: "M4 5h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z M3 9.5h18 M7 7.25h.01 M10 7.25h.01" },
         { title: "Lead Generation", body: "Lead magnet, CRM data management, outreach sampai discovery call", color: "#FDBC43", ink: "#363641", d: "M3 4h18l-7 8.5V19l-4 2v-8.5z" },
@@ -51,7 +50,6 @@
       blurb: "Contoh pekerjaan nyata: landing page, lead generation, dan email marketing untuk klien.",
       cta: "Lihat case study",
       href: "/portfolio/#work",
-      external: false,
       items: [
         { title: "Lesson ReVAmp with Richard", body: "Funnel dan pendaftaran event", color: "#7D1633", ink: "#F0EBDF", d: "M5 4h14a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z M4 9h16 M8 2.5v3 M16 2.5v3 M9 14l2 2 4-4" },
         { title: "Ocean Smith Fitness", body: "Lead magnet dan opt-in", color: "#485D7C", ink: "#F0EBDF", d: "M4 12h2 M18 12h2 M6 8v8 M18 8v8 M9 6v12 M15 6v12 M9 12h6" },
@@ -64,7 +62,6 @@
       blurb: "Panduan dan toolkit yang bisa langsung Anda pakai.",
       cta: "Lihat semua produk",
       href: "/produk",
-      external: false,
       items: [
         { title: "English Survival Kit", body: "Contekan kalimat Inggris kerja remote", color: "#082C8C", ink: "#F0EBDF", d: "M21 8l-9-5-9 5v8l9 5 9-5z M3 8l9 5 9-5 M12 13v8" },
         { title: "Studio Kartun 3D dengan Claude Code", body: "Panduan video animasi kartun 3D", color: "#FB8D00", ink: "#363641", d: "M12 3v12 M7 10l5 5 5-5 M4 20h16" },
@@ -86,21 +83,16 @@
       if (!data) return;
       tabs.forEach(function (tab) {
         var on = tab.getAttribute("data-tab") === id;
-        tab.setAttribute("aria-pressed", String(on));
-        tab.querySelector(".tab-pill").textContent = on ? "Dipilih" : "Lihat";
+        tab.classList.toggle("is-on", on);
+        tab.querySelector(".tab-main").setAttribute("aria-pressed", String(on));
+        var label = tab.querySelector("[data-pill]");
+        if (label) label.textContent = on ? "Dipilih" : "Lihat";
       });
       panelEyebrow.textContent = data.eyebrow;
       panelHeadline.textContent = data.headline;
       panelBlurb.textContent = data.blurb;
-      panelCta.textContent = data.cta + " →";
+      panelCta.textContent = data.cta + " \u2192";
       panelCta.setAttribute("href", data.href);
-      if (data.external) {
-        panelCta.setAttribute("target", "_blank");
-        panelCta.setAttribute("rel", "noopener");
-      } else {
-        panelCta.removeAttribute("target");
-        panelCta.removeAttribute("rel");
-      }
       panelItems.textContent = "";
       data.items.forEach(function (it) {
         var row = el("div", "item lift");
@@ -117,7 +109,9 @@
     };
 
     tabs.forEach(function (tab) {
-      tab.addEventListener("click", function () { showTab(tab.getAttribute("data-tab")); });
+      tab.querySelector(".tab-main").addEventListener("click", function () {
+        showTab(tab.getAttribute("data-tab"));
+      });
     });
   }
 
