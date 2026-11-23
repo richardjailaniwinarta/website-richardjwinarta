@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
 import { beforeEach, test } from 'node:test';
 import worker from '../worker/index.js';
 import { renderPage, safeUrl } from '../public/shared/render.js';
@@ -219,4 +220,17 @@ test('admin dan API tertutup kecuali ADMIN_PAGE diaktifkan', async () => {
   assert.equal((await postJson('/api/login', { email: EMAIL, password: PASSWORD })).status, 404);
   env.ADMIN_PAGE = 'on';
   assert.equal((await call('/admin/login')).status, 200);
+});
+
+test('landing page Kit Operasional terhubung ke halaman produk, sitemap, dan checkout', async () => {
+  const read = (path) => readFile(new URL(`../public/${path}`, import.meta.url), 'utf8');
+  const [page, produk, sitemap] = await Promise.all(['kit-operasional-klien-va/index.html', 'produk.html', 'sitemap.xml'].map(read));
+  const links = [...page.matchAll(/href="([^"]+)" data-cta=/g)].map((m) => m[1]);
+  assert.equal(links.length, 4);
+  assert.ok(links.every((href) => href === 'https://lynk.id/erjey/4g4z6ygl23z5/checkout'));
+  assert.ok(!/<script(?![^>]*(src=|ld\+json))/.test(page), 'skrip inline diblokir CSP');
+  assert.ok(produk.includes('href="/kit-operasional-klien-va/"'));
+  const jumlah = produk.match(/<article class="product /g).length;
+  assert.ok(produk.includes(`Menampilkan ${jumlah} dari ${jumlah} produk`));
+  assert.ok(sitemap.includes('https://richardjwinarta.my.id/kit-operasional-klien-va/'));
 });

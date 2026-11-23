@@ -63,6 +63,7 @@
       cta: "Lihat semua produk",
       href: "/produk",
       items: [
+        { title: "Kit Operasional Klien VA", body: "Sistem klien siap pakai untuk VA", color: "#7D1633", ink: "#F0EBDF", d: "M9 4h6v3H9z M9 5H6a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1h-3 M9 14l2 2 4-4" },
         { title: "English Survival Kit", body: "Contekan kalimat Inggris kerja remote", color: "#082C8C", ink: "#F0EBDF", d: "M21 8l-9-5-9 5v8l9 5 9-5z M3 8l9 5 9-5 M12 13v8" },
         { title: "Studio Kartun 3D dengan Claude Code", body: "Panduan video animasi kartun 3D", color: "#FB8D00", ink: "#363641", d: "M12 3v12 M7 10l5 5 5-5 M4 20h16" },
         { title: "Checklist: Legit atau Scam?", body: "Gratis untuk calon VA dan pekerja remote", color: "#FFD5C7", ink: "#7D1633", d: "M14 3H7a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V8z M14 3v5h5 M9 13h6 M9 17h6" }

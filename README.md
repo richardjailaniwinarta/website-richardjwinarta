@@ -9,6 +9,7 @@ Website pribadi Richard J. Winarta: halaman utama, halaman produk digital, halam
 | `/portfolio/` | Portfolio (beranda, `landing-pages`, `lead-generation`, `email-marketing`) | `public/portfolio/` (salinan dari repo `Portfolio-Richard`) |
 | `/links` | Halaman link (tema Kartu Logam, Sinema Malam, Kaca Bara, atau Galeri Putih). **Sedang dinonaktifkan** (404). Kode dan data KV tetap ada. Untuk mengaktifkan lagi, tambahkan variabel `LINKS_PAGE` = `on` di Worker (Settings → Variables), lalu Deploy. | dibuat Worker dari data KV |
 | `/admin` | **Sedang dinonaktifkan** (404, termasuk `/api/`). Aktifkan lagi dengan variabel `ADMIN_PAGE` = `on` di Worker, lalu Deploy. Admin halaman link: atur profil, foto, link, tema, warna, dan efek dengan pratinjau langsung. Perubahan tersimpan sebagai draft dan baru tampil setelah menekan **Terbitkan**. | `worker/` dan `public/admin-assets/` |
+| `/kit-operasional-klien-va/` | Landing page produk Kit Operasional Klien VA. Harga ada di `index.html` (cari `99.000` dan `99000`), tombol beli bertanda `data-cta` mengarah ke checkout Lynk.id. | `public/kit-operasional-klien-va/` |
 | `/studio-kartun-3d/` | Landing page produk Studio Kartun 3D | `public/studio-kartun-3d/` |
 
 Halaman utama dan halaman produk adalah file statis. CSS, JavaScript, dan gambarnya ada di `public/assets/css`, `public/assets/js`, dan `public/assets/img`. Untuk mengubah teks, harga, atau link produk, edit `public/index.html`, `public/produk.html`, dan data tab di `public/assets/js/main.js`.
