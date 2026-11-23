@@ -50,8 +50,8 @@
       headline: "Hasil kerja yang bisa Anda lihat sendiri.",
       blurb: "Contoh pekerjaan nyata: landing page, lead generation, dan email marketing untuk klien.",
       cta: "Lihat case study",
-      href: "https://portfolio-richard.richardjailaniwinarta.workers.dev/#work",
-      external: true,
+      href: "/portfolio/#work",
+      external: false,
       items: [
         { title: "Lesson ReVAmp with Richard", body: "Funnel dan pendaftaran event", color: "#7D1633", ink: "#F0EBDF", d: "M5 4h14a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z M4 9h16 M8 2.5v3 M16 2.5v3 M9 14l2 2 4-4" },
         { title: "Ocean Smith Fitness", body: "Lead magnet dan opt-in", color: "#485D7C", ink: "#F0EBDF", d: "M4 12h2 M18 12h2 M6 8v8 M18 8v8 M9 6v12 M15 6v12 M9 12h6" },
