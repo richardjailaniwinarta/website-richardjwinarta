@@ -4,7 +4,7 @@
 # Hasil: canonical, og:url, og:image, JSON-LD, robots.txt, dan sitemap.xml menunjuk ke domainmu.
 set -e
 DOM="${1:?usage: sh ganti-domain.sh namadomainmu.com  (tanpa https:// dan tanpa garis miring)}"
-cd "$(dirname "$0")"
+cd "$(dirname "$0")/../../public/studio-kartun-3d"
 for f in index.html robots.txt sitemap.xml; do
   sed -i "s/GANTI-DOMAIN\.COM/$DOM/g" "$f"
 done
