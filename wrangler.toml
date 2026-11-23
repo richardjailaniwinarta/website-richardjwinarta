@@ -6,7 +6,8 @@ compatibility_date = "2026-10-01"
 [assets]
 directory = "./public"
 
-# Halaman /links nonaktif secara default. Untuk mengaktifkan lagi, tambahkan variabel LINKS_PAGE = "on"
+# Halaman /links dan admin (/admin, /api) nonaktif secara default. Untuk mengaktifkan lagi, tambahkan variabel
+# LINKS_PAGE = "on" (halaman link) dan ADMIN_PAGE = "on" (admin)
 # (dashboard Cloudflare: Settings > Variables, atau blok [vars] di sini).
 
 # Penyimpanan isi halaman dan foto upload.

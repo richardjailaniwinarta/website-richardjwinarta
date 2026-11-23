@@ -109,6 +109,12 @@ async function route(request, env) {
   const { pathname } = url;
   const method = request.method === 'HEAD' ? 'GET' : request.method;
 
+  // Admin dan API-nya nonaktif secara default. Aktifkan dengan variabel ADMIN_PAGE = "on".
+  const isAdminPath = pathname === '/admin' || pathname.startsWith('/admin/') || pathname.startsWith('/api/');
+  if (isAdminPath && env.ADMIN_PAGE !== 'on') {
+    return new Response('Halaman tidak ditemukan.', { status: 404, headers: { 'Content-Type': 'text/plain; charset=utf-8' } });
+  }
+
   if (method === 'GET') {
     if (pathname === '/links' && env.LINKS_PAGE === 'on') return html(publicHtml(await getPublished(env), url.origin));
     if (pathname === '/admin/login') {

@@ -27,7 +27,7 @@ function fakeKv() {
 
 let env;
 beforeEach(() => {
-  env = { DATA: fakeKv(), ADMIN_EMAIL: EMAIL, ADMIN_PASSWORD: PASSWORD, LINKS_PAGE: 'on' };
+  env = { DATA: fakeKv(), ADMIN_EMAIL: EMAIL, ADMIN_PASSWORD: PASSWORD, LINKS_PAGE: 'on', ADMIN_PAGE: 'on' };
 });
 
 const call = (path, init) => worker.fetch(new Request(BASE + path, init), env);
@@ -209,4 +209,14 @@ test('halaman /links tertutup kecuali LINKS_PAGE diaktifkan', async () => {
   assert.equal((await call('/links')).status, 404);
   env.LINKS_PAGE = 'on';
   assert.equal((await call('/links')).status, 200);
+});
+
+test('admin dan API tertutup kecuali ADMIN_PAGE diaktifkan', async () => {
+  delete env.ADMIN_PAGE;
+  for (const path of ['/admin', '/admin/login', '/admin/preview', '/api/state']) {
+    assert.equal((await call(path)).status, 404, path);
+  }
+  assert.equal((await postJson('/api/login', { email: EMAIL, password: PASSWORD })).status, 404);
+  env.ADMIN_PAGE = 'on';
+  assert.equal((await call('/admin/login')).status, 200);
 });
