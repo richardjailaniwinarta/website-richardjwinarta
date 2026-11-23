@@ -101,7 +101,7 @@ test('warna awal tema Kartu Logam mudah dibaca', () => {
 });
 
 test('halaman public tampil tanpa data tersimpan dan punya header keamanan', async () => {
-  const res = await call('/');
+  const res = await call('/links');
   assert.equal(res.status, 200);
   assert.ok((await res.text()).includes('Richard J. Winarta'));
   assert.ok(res.headers.get('content-security-policy').includes("script-src 'self'"));
@@ -159,11 +159,11 @@ test('draft tidak tampil di public sampai diterbitkan', async () => {
     body: JSON.stringify(draft)
   });
   assert.deepEqual(await saved.json(), { dirty: true });
-  assert.ok(!(await (await call('/')).text()).includes('Nama Baru Tes'));
+  assert.ok(!(await (await call('/links')).text()).includes('Nama Baru Tes'));
 
   const done = await postJson('/api/publish', draft, { cookie });
   assert.deepEqual(await done.json(), { dirty: false });
-  assert.ok((await (await call('/')).text()).includes('Nama Baru Tes'));
+  assert.ok((await (await call('/links')).text()).includes('Nama Baru Tes'));
 
   const state = await (await call('/api/state', { headers: { cookie } })).json();
   assert.equal(state.dirty, false);

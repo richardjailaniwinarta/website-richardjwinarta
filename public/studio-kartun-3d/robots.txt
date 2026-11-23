@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://GANTI-DOMAIN.COM/sitemap.xml
+Sitemap: https://richardjwinarta.my.id/studio-kartun-3d/sitemap.xml

@@ -1,9 +1,16 @@
 # directory-richardva
 
-Halaman link pribadi Richard J. Winarta, dengan panel admin untuk mengatur isi dan tampilannya. Berjalan di Cloudflare Workers, dan datanya disimpan di Cloudflare KV.
+Website pribadi Richard J. Winarta: halaman utama, halaman produk digital, halaman link dengan panel admin, dan landing page produk. Berjalan di Cloudflare Workers, dan data halaman link disimpan di Cloudflare KV.
 
-- **Halaman public** (`/`): tema Kartu Logam, Sinema Malam, Kaca Bara, atau Galeri Putih.
-- **Admin** (`/admin`): atur profil, foto, link, tema, warna, dan efek dengan pratinjau langsung. Perubahan tersimpan otomatis sebagai draft dan baru tampil ke publik setelah menekan **Terbitkan**.
+| Alamat | Isi | Sumber |
+|---|---|---|
+| `/` | Halaman utama (hero, layanan, tentang, paket, kontak) | `public/index.html` |
+| `/produk` | Daftar produk digital dengan filter | `public/produk.html` |
+| `/links` | Halaman link (tema Kartu Logam, Sinema Malam, Kaca Bara, atau Galeri Putih) | dibuat Worker dari data KV |
+| `/admin` | Admin halaman link: atur profil, foto, link, tema, warna, dan efek dengan pratinjau langsung. Perubahan tersimpan sebagai draft dan baru tampil setelah menekan **Terbitkan**. | `worker/` dan `public/admin-assets/` |
+| `/studio-kartun-3d/` | Landing page produk Studio Kartun 3D | `public/studio-kartun-3d/` |
+
+Halaman utama dan halaman produk adalah file statis. CSS, JavaScript, dan gambarnya ada di `public/assets/css`, `public/assets/js`, dan `public/assets/img`. Untuk mengubah teks, harga, atau link produk, edit `public/index.html`, `public/produk.html`, dan data tab di `public/assets/js/main.js`.
 
 ## Memasang di Cloudflare
 

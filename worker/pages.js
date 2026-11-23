@@ -19,7 +19,7 @@ export function publicHtml(config, origin) {
 <meta property="og:type" content="profile">
 <meta property="og:title" content="${title}">
 <meta property="og:description" content="${description}">
-<meta property="og:url" content="${esc(origin)}/">
+<meta property="og:url" content="${esc(origin)}/links">
 <meta property="og:image" content="${esc(origin + config.photo.url)}">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 ${FONT_HOSTS}
@@ -108,7 +108,7 @@ ${FONT_HOSTS}
     <span id="theme-note"></span>
   </div>
   <span class="status" id="status" role="status"></span>
-  <a class="btn-ghost" href="/" target="_blank" rel="noopener">Lihat halaman</a>
+  <a class="btn-ghost" href="/links" target="_blank" rel="noopener">Lihat halaman</a>
   <button class="btn-ghost" type="button" id="logout">Keluar</button>
   <button class="btn-primary" type="button" id="publish">Terbitkan</button>
 </header>
