@@ -1,4 +1,8 @@
 (function () {
+  // Teks halaman ditulis dalam bahasa Inggris; T() menerjemahkannya lewat /assets/js/i18n.js.
+  function T(s) { return window.I18N ? window.I18N.t(s) : s; }
+  function onLang(fn) { document.addEventListener('langchange', fn); }
+
   // Tab groups: buttons carry data-group + data-target; panels carry data-group + id.
   // Optional on the button: data-url, data-aria, data-note update #<group>-url / -screen / -note.
   var groups = {};
@@ -31,16 +35,25 @@
         select(n); n.focus(); e.preventDefault();
       });
     });
+    // Ganti bahasa: tulis ulang keterangan tab yang sedang aktif.
+    onLang(function () {
+      var cur = tabs.filter(function (t) { return t.getAttribute('aria-selected') === 'true'; })[0];
+      if (cur) select(cur);
+    });
   });
 
   // Zoom toggles
   document.querySelectorAll('[data-zoom]').forEach(function (btn) {
     var screen = document.getElementById(btn.dataset.zoom);
+    var paint = function () {
+      btn.textContent = btn.getAttribute('aria-pressed') === 'true' ? btn.dataset.labelOn : btn.dataset.labelOff;
+    };
     btn.addEventListener('click', function () {
       var on = screen.classList.toggle('zoomed');
       btn.setAttribute('aria-pressed', String(on));
-      btn.textContent = on ? btn.dataset.labelOn : btn.dataset.labelOff;
+      paint();
     });
+    onLang(paint);
   });
 
   // Accordion steppers: <button class="stepbtn" data-detail="...">
@@ -57,6 +70,7 @@
       b.setAttribute('aria-expanded', 'true');
       detail = document.createElement('p');
       detail.className = 'stepdetail';
+      detail.setAttribute('data-i18n-skip', '');
       detail.textContent = b.dataset.detail;
       b.after(detail);
     }
@@ -64,6 +78,11 @@
       b.addEventListener('click', function () { b.classList.contains('sel') ? close() : open(b); });
     });
     if (btns.length) open(btns[0]);
+    // Ganti bahasa: data-detail sudah diterjemahkan, jadi tulis ulang teks yang terbuka.
+    onLang(function () {
+      var sel = list.querySelector('.stepbtn.sel');
+      if (detail && sel) detail.textContent = sel.dataset.detail;
+    });
   });
 
   // Email page: subject line styles
@@ -87,14 +106,14 @@
       box.innerHTML = '';
       var why = document.createElement('p');
       why.className = 'sl-why';
-      why.textContent = d.why;
+      why.textContent = T(d.why);
       box.appendChild(why);
       d.lines.forEach(function (l) {
         var row = document.createElement('div');
         row.className = 'sl-line';
         row.innerHTML = ICON;
         var s = document.createElement('span');
-        s.textContent = l;
+        s.textContent = T(l);
         row.appendChild(s);
         box.appendChild(row);
       });
@@ -111,5 +130,9 @@
       });
     });
     showSl(tabsArr[0]);
+    onLang(function () {
+      var cur = tabsArr.filter(function (t) { return t.getAttribute('aria-selected') === 'true'; })[0];
+      if (cur) showSl(cur);
+    });
   }
 })();

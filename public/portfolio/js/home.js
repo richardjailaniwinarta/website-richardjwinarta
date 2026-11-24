@@ -17,6 +17,9 @@
       items: ['Calendar or schedule management', 'Email management', 'File organization', 'Customer support', 'Assistance'] }
   ];
 
+  // Teks ditulis dalam bahasa Inggris; T() menerjemahkannya lewat /assets/js/i18n.js.
+  function T(s) { return window.I18N ? window.I18N.t(s) : s; }
+
   var grid = document.getElementById('svc-grid');
   var flipAllBtn = document.getElementById('flip-all');
   var open = {};
@@ -37,22 +40,22 @@
     card.style.setProperty('--tilt', d.tilt);
     card.style.setProperty('--c', d.bg);
 
-    var items = d.items.map(function (it, k) { return '<li style="--i:' + k + '">' + it + '</li>'; }).join('');
+    var items = d.items.map(function (it, k) { return '<li style="--i:' + k + '">' + T(it) + '</li>'; }).join('');
     card.innerHTML =
       '<div class="svcinner">' +
         '<div class="svcface svcfront" style="background:' + d.bg + ';color:' + d.fg + '">' +
-          (d.feat ? '<span class="svcfeat label">Core service</span>' : '') +
+          (d.feat ? '<span class="svcfeat label">' + T('Core service') + '</span>' : '') +
           '<span class="svcicon" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#363641" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="' + d.icon + '"/></svg></span>' +
-          '<h3 class="svctitle">' + d.title + '</h3>' +
-          '<span class="label" style="opacity:.85">' + d.items.length + ' services</span>' +
-          '<span class="svchint label"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M3 12a9 9 0 0115.5-6.3L21 8M21 3v5h-5"/></svg>See what\'s inside</span>' +
+          '<h3 class="svctitle">' + T(d.title) + '</h3>' +
+          '<span class="label" style="opacity:.85">' + d.items.length + ' ' + T('services') + '</span>' +
+          '<span class="svchint label"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M3 12a9 9 0 0115.5-6.3L21 8M21 3v5h-5"/></svg>' + T('See what\'s inside') + '</span>' +
           '<span class="svcnum" aria-hidden="true">' + num + '</span>' +
         '</div>' +
         '<div class="svcface svcback">' +
-          '<span class="label" style="color:#5c5c64;margin-bottom:6px">' + num + ' · ' + d.title + '</span>' +
-          '<h3 class="svcbacktitle">' + d.lead + '</h3>' +
+          '<span class="label" style="color:#5c5c64;margin-bottom:6px">' + num + ' · ' + T(d.title) + '</span>' +
+          '<h3 class="svcbacktitle">' + T(d.lead) + '</h3>' +
           '<ul class="svclist">' + items + '</ul>' +
-          '<span class="svchint label" style="color:#5c5c64"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M21 12a9 9 0 01-15.5 6.3L3 16M3 21v-5h5"/></svg>Flip back</span>' +
+          '<span class="svchint label" style="color:#5c5c64"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M21 12a9 9 0 01-15.5 6.3L3 16M3 21v-5h5"/></svg>' + T('Flip back') + '</span>' +
         '</div>' +
       '</div>';
 
@@ -70,7 +73,7 @@
     c.card.classList.toggle('open', isOpen);
     c.card.classList.toggle('shut', !isOpen);
     c.btn.setAttribute('aria-expanded', String(isOpen));
-    c.btn.setAttribute('aria-label', (isOpen ? 'Hide ' : 'Show ') + c.def.title + ' services');
+    c.btn.setAttribute('aria-label', T(isOpen ? 'Hide services:' : 'Show services:') + ' ' + T(c.def.title));
   }
 
   // The 3D flip class only lives for the duration of the animation so resting text stays crisp.
@@ -86,7 +89,7 @@
   function syncFlipAll() {
     var a = allOpen();
     flipAllBtn.setAttribute('aria-pressed', String(a));
-    flipAllBtn.querySelector('span').textContent = a ? 'Flip all back' : 'Flip all cards';
+    flipAllBtn.querySelector('span').textContent = T(a ? 'Flip all back' : 'Flip all cards');
   }
 
   function toggle(id) {
@@ -102,8 +105,14 @@
     syncFlipAll();
   });
 
-  SERVICES.forEach(function (d, i) { grid.appendChild(build(d, i)); paint(d.id); });
-  syncFlipAll();
+  function render() {
+    grid.textContent = '';
+    SERVICES.forEach(function (d, i) { grid.appendChild(build(d, i)); paint(d.id); });
+    syncFlipAll();
+  }
+  render();
+  // Ganti bahasa: bangun ulang kartu, status buka/tutup tetap dipertahankan.
+  document.addEventListener('langchange', render);
 
   // project tabs
   var tabs = Array.prototype.slice.call(document.querySelectorAll('.tabs [role="tab"]'));

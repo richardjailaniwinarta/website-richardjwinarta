@@ -86,6 +86,16 @@ button { font-family: inherit; }
 .nav .nav-cta { background: var(--charcoal); color: var(--cream); padding: 12px 24px; border-radius: 999px; margin-left: 8px; }
 .nav .nav-cta:hover { color: var(--cream); }
 
+/* Tombol bahasa EN | ID */
+.langsw { display: inline-flex; margin-left: 8px; border: 1.5px solid var(--charcoal); border-radius: 999px; overflow: hidden; }
+.langsw-btn {
+  font: inherit; font-size: 13px; font-weight: 700; letter-spacing: 0.04em;
+  padding: 8px 12px; border: 0; background: transparent; color: var(--charcoal); cursor: pointer;
+}
+.langsw-btn:hover { background: var(--blush); }
+.langsw-btn[aria-pressed="true"] { background: var(--charcoal); color: var(--cream); }
+.langsw-btn:focus-visible { outline: 2px solid var(--maroon); outline-offset: -3px; }
+
 /* ---------- Tombol ---------- */
 .btn {
   display: inline-block; text-align: center; text-decoration: none; cursor: pointer;
